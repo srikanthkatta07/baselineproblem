@@ -15,8 +15,13 @@ public class BillMachine {
 
     public double getTotalCost(double totalCost) {
         String[] receipt = statement.split(" ");
+        this.totalCost = totalCost;
+        if (statement.contains("imported")) {
+            Double itemPrice = Double.parseDouble(receipt[receipt.length - 1]);
+            return totalCost + itemPrice + ((itemPrice * 5) / 100);
+
+        }
         if (statement.contains(items.get(0)) || statement.contains(items.get(1))) {
-            this.totalCost = totalCost;
             int numberOfItems = Integer.parseInt(receipt[0]);
             String itemName = receipt[1];
             Double itemPrice = Double.parseDouble(receipt[receipt.length - 1]);

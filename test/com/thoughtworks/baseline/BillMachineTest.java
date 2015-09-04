@@ -24,8 +24,17 @@ public class BillMachineTest {
     @Test
     public void shouldGivePriceOfTheItemsWhenThoseAreNonImportedBasicNeedItemsPWithOutSalesTax() {
         BillMachine billMachine = new BillMachine("1 book at 12");
-        BillMachine billMachine1=new BillMachine("1 packet of headache pills at 10");
+        BillMachine billMachine1 = new BillMachine("1 packet of headache pills at 10");
+
         assertEquals(22, billMachine1.getTotalCost(billMachine.getTotalCost(0)), 0.2d);
+
+    }
+
+    @Test
+    public void shouldGivePriceOfTheItemAlongWithSalesTaxWhenImportedBasicNeedItemPurchased() {
+        BillMachine billMachine = new BillMachine("1 imported book at 12");
+
+        assertEquals(12.6, billMachine.getTotalCost(0), 0.2d);
 
     }
 }
