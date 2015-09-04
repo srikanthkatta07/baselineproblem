@@ -20,12 +20,20 @@ public class BillMachine {
             Double itemPrice = Double.parseDouble(receipt[receipt.length - 1]);
             return totalCost + itemPrice + ((itemPrice * 5) / 100);
         }
-        if (statement.contains(items.get(0)) || statement.contains(items.get(1)) || statement.contains(items.get(2))) {
+        if (isContain()) {
             int numberOfItems = Integer.parseInt(receipt[0]);
             String itemName = receipt[1];
             Double itemPrice = Double.parseDouble(receipt[receipt.length - 1]);
             return totalCost + itemPrice;
         }
         return 0.0;
+    }
+
+    public boolean isContain() {
+        for (String item : items) {
+            if (statement.contains(item))
+                return true;
+        }
+        return false;
     }
 }
