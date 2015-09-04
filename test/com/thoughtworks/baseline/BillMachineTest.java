@@ -55,4 +55,12 @@ public class BillMachineTest {
         assertEquals(41.0, billMachine1.getTotalCost(billMachine.getTotalCost(0)), 0.2d);
 
     }
+
+    @Test
+    public void shouldGivePriceOfTheItemWhenOneNonImportedNonBasicItemWillGivePriceAlongWithSalesTax() {
+        BillMachine billMachine = new BillMachine("1 Music CD at 20");
+
+        assertEquals(22.0, billMachine.getTotalCost(0), 0.2d);
+
+    }
 }

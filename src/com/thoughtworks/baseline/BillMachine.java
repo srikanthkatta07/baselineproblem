@@ -7,7 +7,8 @@ public class BillMachine {
 
     private String statement;
     private double totalCost;
-    List<String> items = Arrays.asList("book", "packet of headache pills", "box of chocolates");
+    List<String> basicItems = Arrays.asList("book", "packet of headache pills", "box of chocolates");
+    List<String> NonbasicItems = Arrays.asList("Music CD");
 
     public BillMachine(String statement) {
         this.statement = statement;
@@ -20,20 +21,27 @@ public class BillMachine {
             Double itemPrice = Double.parseDouble(receipt[receipt.length - 1]);
             return totalCost + itemPrice + ((itemPrice * 5) / 100);
         }
-        if (isContain()) {
+        if ((isContain()).equals("BasicItem")) {
             int numberOfItems = Integer.parseInt(receipt[0]);
             String itemName = receipt[1];
             Double itemPrice = Double.parseDouble(receipt[receipt.length - 1]);
             return totalCost + itemPrice;
         }
+        if ((isContain()).equals("NonBasicItem")) {
+            Double itemPrice = Double.parseDouble(receipt[receipt.length - 1]);
+            return totalCost + itemPrice + ((itemPrice * 10) / 100);
+        }
         return 0.0;
     }
 
-    public boolean isContain() {
-        for (String item : items) {
+    public String isContain() {
+        for (String item : basicItems) {
             if (statement.contains(item))
-                return true;
+                return "BasicItem";
         }
-        return false;
+        if (statement != "") {
+            return "NonBasicItem";
+        }
+        return "EmptyString";
     }
 }
