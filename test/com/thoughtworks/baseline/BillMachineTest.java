@@ -37,4 +37,13 @@ public class BillMachineTest {
         assertEquals(12.6, billMachine.getTotalCost(0), 0.2d);
 
     }
+
+    @Test
+    public void shouldGivePriceOfTheItemsAlongWithSalesTaxWhenImportedBasicNeedItemsPurchased() {
+        BillMachine billMachine = new BillMachine("1 imported book at 20");
+        BillMachine billMachine1 = new BillMachine("1 imported box of chocolates at 20");
+
+        assertEquals(42.0, billMachine1.getTotalCost(billMachine.getTotalCost(0)), 0.2d);
+
+    }
 }
